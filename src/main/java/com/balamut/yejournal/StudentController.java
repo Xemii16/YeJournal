@@ -2,9 +2,9 @@ package com.balamut.yejournal;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
@@ -14,9 +14,8 @@ public class StudentController {
 
     private StudentRepository repository;
 
-    @GetMapping("student/{id}")
-    @SneakyThrows
-    public Student getStudent(@PathVariable UUID id, HttpServletResponse response) {
+    @GetMapping("{id}")
+    public Student getStudent(@PathVariable UUID id, HttpServletResponse response) throws IOException {
         boolean studentExists;
         Student student;
         studentExists = repository.existsByUuid(id);
