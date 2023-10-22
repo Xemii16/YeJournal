@@ -1,0 +1,9 @@
+package com.balamut.yejournal.repositories;
+
+import com.balamut.yejournal.entities.User;
+import org.springframework.data.repository.CrudRepository;
+
+import java.util.UUID;
+
+public interface UserRepository extends CrudRepository<User, UUID> {
+}
