@@ -1,4 +1,4 @@
-package com.balamut.yejournal;
+package com.balamut.yejournal.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,25 +9,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Instant;
 import java.util.UUID;
 
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Data
-public class Student {
+@Builder
+@Entity
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
-
+    private String email;
+    private String username;
+    private String password;
     private String firstName;
-
-    private String secondName;
-
-    private String thirdName;
-
-    private Instant birthday;
+    private String lastName;
+    private String surname;
+    private Long birthday;
 }
