@@ -1,6 +1,7 @@
 package com.balamut.yejournal.repositories;
 
 import com.balamut.yejournal.entities.User;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +13,5 @@ public interface UserRepository extends CrudRepository<User, UUID> {
 
     boolean existsByEmail(String email);
     boolean existsByUsername(String username);
+    void deleteById(@NotNull UUID id);
 }

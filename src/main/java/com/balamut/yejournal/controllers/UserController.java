@@ -2,20 +2,17 @@ package com.balamut.yejournal.controllers;
 
 import com.balamut.yejournal.entities.User;
 import com.balamut.yejournal.repositories.UserRepository;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@Data
 @RequestMapping("/user")
 public class UserController {
 
@@ -26,28 +23,37 @@ public class UserController {
     }
 
     @PostMapping("")
-    public UUID createUser(@RequestBody User user) throws ResponseStatusException {
-        if (user.getFirstName() == null){
-            throw new ResponseStatusException(HttpStatusCode.valueOf(400), "First name can not be blank");
+    public UUID createUser(@RequestBody @NotNull User user) throws ResponseStatusException{
+        if (repository.existsById(user.getId())){
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Use PUT method for update user");
         }
-        if (user.getLastName() == null){
-            throw new ResponseStatusException(HttpStatusCode.valueOf(400), "Last name can not be blank");
+        User savedUser = repository.save(user);
+        return savedUser.getId();
+    }
+
+    @GetMapping("{uuid}")
+    public User getUser(@PathVariable UUID uuid) throws ResponseStatusException{
+        Optional<User> optional = repository.findById(uuid);
+        if (optional.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        if (user.getPassword() == null){
-            throw new ResponseStatusException(HttpStatusCode.valueOf(400), "Password can not be blank");
+        return optional.get();
+    }
+
+    @DeleteMapping("{uuid}")
+    public void deleteUser(@PathVariable UUID uuid) throws ResponseStatusException{
+        if(!repository.existsById(uuid)){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        if (user.getUsername() == null){
-            throw new ResponseStatusException(HttpStatusCode.valueOf(400), "Username can not be blank");
+        repository.deleteById(uuid);
+    }
+
+    @PutMapping("")
+    public UUID updateUser(@RequestBody @NotNull User user) throws ResponseStatusException{
+        if (!repository.existsById(user.getId())){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        if (user.getEmail() == null & repository.existsByEmail(user.getEmail())){
-            throw new ResponseStatusException(HttpStatusCode.valueOf(409), "This email is not available");
-        }
-        if (repository.existsByUsername(user.getUsername())){
-            throw new ResponseStatusException(HttpStatusCode.valueOf(409), "This username is not available");
-        }
-        UUID uuid = UUID.randomUUID();
-        user.setId(uuid);
-        repository.save(user);
-        return uuid;
+        User saved = repository.save(user);
+        return saved.getId();
     }
 }
