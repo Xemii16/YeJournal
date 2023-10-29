@@ -13,7 +13,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.time.Instant;
 import java.util.UUID;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -47,11 +46,7 @@ class UserControllerTest {
                 UUID.randomUUID(),
                 "test@gmail.com",
                 "xemii16",
-                "12345678",
-                "Maks",
-                "Veray",
-                "Goggl",
-                Instant.now().toEpochMilli()
+                "12345678"
         );
     }
 
