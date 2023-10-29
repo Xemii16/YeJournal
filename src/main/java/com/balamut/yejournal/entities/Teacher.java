@@ -23,5 +23,9 @@ public class Teacher {
     private UUID id;
     private UUID userId;
     private UUID schoolId;
+    private String firstName;
+    private String lastName;
+    private String surname;
+    private Long birthday;
     private String job;
 }

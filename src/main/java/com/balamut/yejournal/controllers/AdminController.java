@@ -1,7 +1,7 @@
 package com.balamut.yejournal.controllers;
 
-import com.balamut.yejournal.entities.User;
-import com.balamut.yejournal.repositories.UserRepository;
+import com.balamut.yejournal.entities.Admin;
+import com.balamut.yejournal.repositories.AdminRepository;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
@@ -13,27 +13,27 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/admin")
+public class AdminController {
 
-    private UserRepository repository;
+    private AdminRepository repository;
 
-    public UserController(UserRepository repository) {
+    public AdminController(AdminRepository repository) {
         this.repository = repository;
     }
 
     @PostMapping("")
-    public UUID createUser(@RequestBody @NotNull User user) throws ResponseStatusException {
-        if (repository.existsById(user.getId())) {
+    public UUID createAdmin(@RequestBody @NotNull Admin admin) throws ResponseStatusException {
+        if (repository.existsById(admin.getId())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Use PUT method for update user");
         }
-        User savedUser = repository.save(user);
-        return savedUser.getId();
+        Admin savedAdmin = repository.save(admin);
+        return savedAdmin.getId();
     }
 
     @GetMapping("{uuid}")
-    public User getUser(@PathVariable UUID uuid) throws ResponseStatusException {
-        Optional<User> optional = repository.findById(uuid);
+    public Admin getAdmin(@PathVariable UUID uuid) throws ResponseStatusException {
+        Optional<Admin> optional = repository.findById(uuid);
         if (optional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @DeleteMapping("{uuid}")
-    public void deleteUser(@PathVariable UUID uuid) throws ResponseStatusException {
+    public void deleteAdmin(@PathVariable UUID uuid) throws ResponseStatusException {
         if (!repository.existsById(uuid)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -49,11 +49,11 @@ public class UserController {
     }
 
     @PutMapping("")
-    public UUID updateUser(@RequestBody @NotNull User user) throws ResponseStatusException {
-        if (!repository.existsById(user.getId())) {
+    public UUID updateAdmin(@RequestBody @NotNull Admin admin) throws ResponseStatusException {
+        if (!repository.existsById(admin.getId())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        User saved = repository.save(user);
+        Admin saved = repository.save(admin);
         return saved.getId();
     }
 }

@@ -23,4 +23,8 @@ public class Student {
     private UUID id;
     private UUID usedId;
     private UUID classroomId;
+    private String firstName;
+    private String lastName;
+    private String surname;
+    private Long birthday;
 }
