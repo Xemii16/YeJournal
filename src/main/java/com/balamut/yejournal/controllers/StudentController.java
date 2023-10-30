@@ -1,7 +1,7 @@
 package com.balamut.yejournal.controllers;
 
-import com.balamut.yejournal.entities.Teacher;
-import com.balamut.yejournal.repositories.TeacherRepository;
+import com.balamut.yejournal.entities.Student;
+import com.balamut.yejournal.repositories.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
@@ -13,27 +13,27 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/teacher")
-public class TeacherController {
+@RequestMapping("/student")
+public class StudentController {
 
-    private TeacherRepository repository;
+    private StudentRepository repository;
 
-    public TeacherController(TeacherRepository repository) {
+    public StudentController(StudentRepository repository) {
         this.repository = repository;
     }
 
     @PostMapping("")
-    public UUID createTeacher(@RequestBody @NotNull Teacher teacher) throws ResponseStatusException {
-        if (repository.existsById(teacher.getId())) {
+    public UUID createStudent(@RequestBody @NotNull Student student) throws ResponseStatusException {
+        if (repository.existsById(student.getId())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Use PUT method for update user");
         }
-        Teacher savedTeacher = repository.save(teacher);
-        return savedTeacher.getId();
+        Student savedStudent = repository.save(student);
+        return savedStudent.getId();
     }
 
     @GetMapping("{uuid}")
-    public Teacher getTeacher(@PathVariable UUID uuid) throws ResponseStatusException {
-        Optional<Teacher> optional = repository.findById(uuid);
+    public Student getStudent(@PathVariable UUID uuid) throws ResponseStatusException {
+        Optional<Student> optional = repository.findById(uuid);
         if (optional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -41,7 +41,7 @@ public class TeacherController {
     }
 
     @DeleteMapping("{uuid}")
-    public void deleteTeacher(@PathVariable UUID uuid) throws ResponseStatusException {
+    public void deleteStudent(@PathVariable UUID uuid) throws ResponseStatusException {
         if (!repository.existsById(uuid)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -49,11 +49,12 @@ public class TeacherController {
     }
 
     @PutMapping("")
-    public UUID updateTeacher(@RequestBody @NotNull Teacher teacher) throws ResponseStatusException {
-        if (!repository.existsById(teacher.getId())) {
+    public UUID updateStudent(@RequestBody @NotNull Student student) throws ResponseStatusException {
+        if (!repository.existsById(student.getId())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        Teacher saved = repository.save(teacher);
+        Student saved = repository.save(student);
         return saved.getId();
     }
+
 }
