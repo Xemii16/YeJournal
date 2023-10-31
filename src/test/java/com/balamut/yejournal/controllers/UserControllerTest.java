@@ -1,5 +1,6 @@
 package com.balamut.yejournal.controllers;
 
+import com.balamut.yejournal.entities.Role;
 import com.balamut.yejournal.entities.User;
 import com.balamut.yejournal.repositories.UserRepository;
 import com.google.gson.Gson;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -46,7 +48,8 @@ class UserControllerTest {
                 UUID.randomUUID(),
                 "test@gmail.com",
                 "xemii16",
-                "12345678"
+                "12345678",
+                List.of(new Role())
         );
     }
 
