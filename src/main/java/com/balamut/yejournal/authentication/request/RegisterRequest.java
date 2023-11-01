@@ -1,4 +1,4 @@
-package com.balamut.yejournal.request;
+package com.balamut.yejournal.authentication.request;
 
 public record RegisterRequest (String email, String username, String password){
 }

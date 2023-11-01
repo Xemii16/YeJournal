@@ -1,4 +1,4 @@
-package com.balamut.yejournal.entity;
+package com.balamut.yejournal.authentication.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

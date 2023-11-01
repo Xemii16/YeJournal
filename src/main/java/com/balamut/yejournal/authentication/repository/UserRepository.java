@@ -1,6 +1,6 @@
-package com.balamut.yejournal.repository;
+package com.balamut.yejournal.authentication.repository;
 
-import com.balamut.yejournal.entity.User;
+import com.balamut.yejournal.authentication.entity.User;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

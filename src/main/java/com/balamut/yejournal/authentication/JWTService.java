@@ -1,4 +1,4 @@
-package com.balamut.yejournal.security;
+package com.balamut.yejournal.authentication;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

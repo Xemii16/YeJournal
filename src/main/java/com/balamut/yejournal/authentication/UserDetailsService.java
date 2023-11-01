@@ -1,7 +1,6 @@
-package com.balamut.yejournal.security;
+package com.balamut.yejournal.authentication;
 
-import com.balamut.yejournal.entity.User;
-import com.balamut.yejournal.repository.UserRepository;
+import com.balamut.yejournal.authentication.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

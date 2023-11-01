@@ -1,7 +1,7 @@
 package com.balamut.yejournal.controller;
 
-import com.balamut.yejournal.entity.User;
-import com.balamut.yejournal.repository.UserRepository;
+import com.balamut.yejournal.authentication.entity.User;
+import com.balamut.yejournal.authentication.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;

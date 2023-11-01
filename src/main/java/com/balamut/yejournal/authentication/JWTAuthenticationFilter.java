@@ -1,4 +1,4 @@
-package com.balamut.yejournal.security;
+package com.balamut.yejournal.authentication;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

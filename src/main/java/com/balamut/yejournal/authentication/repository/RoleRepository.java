@@ -1,6 +1,6 @@
-package com.balamut.yejournal.repository;
+package com.balamut.yejournal.authentication.repository;
 
-import com.balamut.yejournal.entity.Role;
+import com.balamut.yejournal.authentication.entity.Role;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;

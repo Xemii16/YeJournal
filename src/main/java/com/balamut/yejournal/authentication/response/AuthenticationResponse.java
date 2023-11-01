@@ -1,4 +1,4 @@
-package com.balamut.yejournal.response;
+package com.balamut.yejournal.authentication.response;
 
 public record AuthenticationResponse (String token){
 }

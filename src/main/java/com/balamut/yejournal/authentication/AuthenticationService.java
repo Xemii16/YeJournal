@@ -1,11 +1,11 @@
-package com.balamut.yejournal.service;
+package com.balamut.yejournal.authentication;
 
-import com.balamut.yejournal.entity.User;
-import com.balamut.yejournal.repository.UserRepository;
-import com.balamut.yejournal.request.AuthenticationRequest;
-import com.balamut.yejournal.request.RegisterRequest;
-import com.balamut.yejournal.response.AuthenticationResponse;
-import com.balamut.yejournal.security.JWTService;
+import com.balamut.yejournal.authentication.entity.User;
+import com.balamut.yejournal.authentication.repository.UserRepository;
+import com.balamut.yejournal.authentication.request.AuthenticationRequest;
+import com.balamut.yejournal.authentication.request.RegisterRequest;
+import com.balamut.yejournal.authentication.response.AuthenticationResponse;
+import com.balamut.yejournal.authentication.JWTService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
