@@ -22,8 +22,11 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
+    @Column(name = "username", unique = true, nullable = false, length = 32)
     private String username;
+    @Column(nullable = false)
     private String password;
 
     @ManyToMany
