@@ -1,11 +1,11 @@
 package com.balamut.yejournal.authentication;
 
+import com.balamut.yejournal.authentication.entity.Role;
 import com.balamut.yejournal.authentication.entity.User;
 import com.balamut.yejournal.authentication.repository.UserRepository;
 import com.balamut.yejournal.authentication.request.AuthenticationRequest;
 import com.balamut.yejournal.authentication.request.RegisterRequest;
 import com.balamut.yejournal.authentication.response.AuthenticationResponse;
-import com.balamut.yejournal.authentication.JWTService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,7 +29,7 @@ public class AuthenticationService {
                 request.email(),
                 request.username(),
                 passwordEncoder.encode(request.password()),
-                List.of()
+                List.of(Role.USER)
         );
         repository.save(user);
         String jwtToken = jwtService.generateToken(user);

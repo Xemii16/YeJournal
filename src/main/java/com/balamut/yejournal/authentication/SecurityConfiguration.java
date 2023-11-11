@@ -22,9 +22,10 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity http) throws Exception {
         http
-                .csrf((csrfConfigurer) -> csrfConfigurer.disable())
+                .csrf((csrfConfigurer) -> csrfConfigurer.ignoringRequestMatchers("/api/v1/**"))
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/api/v1/school/**").authenticated()
+                        .requestMatchers("/api/v1/auth/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

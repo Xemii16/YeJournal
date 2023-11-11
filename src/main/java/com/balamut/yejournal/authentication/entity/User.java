@@ -25,20 +25,12 @@ public class User implements UserDetails {
     private String email;
     private String username;
     private String password;
-
-    @ManyToMany
-    @JoinTable(
-            name = "join_user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
+    @Enumerated(EnumType.STRING)
     private List<Role> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles
-                .stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toSet());
     }
 

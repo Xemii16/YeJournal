@@ -1,11 +1,16 @@
 package com.balamut.yejournal.school;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Data
 public class School {
 
     @Id

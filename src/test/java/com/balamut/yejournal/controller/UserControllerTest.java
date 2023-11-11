@@ -50,7 +50,7 @@ class UserControllerTest {
                 "test@gmail.com",
                 "xemii16",
                 "12345678",
-                List.of(new Role())
+                List.of(Role.USER)
         );
     }
 

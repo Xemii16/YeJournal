@@ -26,10 +26,10 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain)
             throws ServletException, IOException {
-        String authenticationHeader = request.getHeader("Authorizarion");
+        String authenticationHeader = request.getHeader("Authorization");
         String jwt;
         String userEmail;
-        if (authenticationHeader == null || authenticationHeader.startsWith("Bearer ")){
+        if (authenticationHeader == null || !authenticationHeader.startsWith("Bearer ")){
             filterChain.doFilter(request, response);
             return;
         }
