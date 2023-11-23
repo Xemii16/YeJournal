@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Data
 public class School {
@@ -17,17 +17,10 @@ public class School {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String name;
-    private String fullName;
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private SchoolAddress address;
 
     @OneToMany(mappedBy = "school")
     private List<Admin> admins;
 
     @OneToMany(mappedBy = "school")
     private List<Teacher> teachers;
-    private String telephones;
-    private String email;
-    private String site;
 }

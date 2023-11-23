@@ -1,7 +1,7 @@
 package com.balamut.yejournal;
 
 import com.balamut.yejournal.authentication.repository.UserRepository;
-import com.balamut.yejournal.authentication.UserDetailsService;
+import com.balamut.yejournal.authentication.service.UserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

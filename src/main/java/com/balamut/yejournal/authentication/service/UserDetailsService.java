@@ -1,4 +1,4 @@
-package com.balamut.yejournal.authentication;
+package com.balamut.yejournal.authentication.service;
 
 import com.balamut.yejournal.authentication.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +17,7 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return repository
-                .findByUsername(username)
+                .findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not exists"));
     }
 }

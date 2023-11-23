@@ -1,5 +1,6 @@
-package com.balamut.yejournal.authentication;
+package com.balamut.yejournal.authentication.controller;
 
+import com.balamut.yejournal.authentication.service.AuthenticationService;
 import com.balamut.yejournal.authentication.request.AuthenticationRequest;
 import com.balamut.yejournal.authentication.request.RegisterRequest;
 import com.balamut.yejournal.authentication.response.AuthenticationResponse;

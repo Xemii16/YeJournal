@@ -1,5 +1,7 @@
-package com.balamut.yejournal.authentication;
+package com.balamut.yejournal.authentication.filter;
 
+import com.balamut.yejournal.authentication.service.JWTService;
+import com.balamut.yejournal.authentication.service.UserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

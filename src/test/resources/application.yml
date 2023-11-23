@@ -9,4 +9,6 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+  mvc:
+    log-request-details: true
 debug: true
