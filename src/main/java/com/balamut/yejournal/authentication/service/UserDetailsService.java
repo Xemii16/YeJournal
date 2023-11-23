@@ -1,4 +1,4 @@
-package com.balamut.yejournal.authentication;
+package com.balamut.yejournal.authentication.service;
 
 import com.balamut.yejournal.authentication.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;

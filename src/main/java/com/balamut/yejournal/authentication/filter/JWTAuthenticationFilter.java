@@ -1,5 +1,7 @@
-package com.balamut.yejournal.authentication;
+package com.balamut.yejournal.authentication.filter;
 
+import com.balamut.yejournal.authentication.service.JWTService;
+import com.balamut.yejournal.authentication.service.UserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,10 +28,10 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain)
             throws ServletException, IOException {
-        String authenticationHeader = request.getHeader("Authorizarion");
+        String authenticationHeader = request.getHeader("Authorization");
         String jwt;
         String userEmail;
-        if (authenticationHeader == null || authenticationHeader.startsWith("Bearer ")){
+        if (authenticationHeader == null || !authenticationHeader.startsWith("Bearer ")){
             filterChain.doFilter(request, response);
             return;
         }

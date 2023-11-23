@@ -1,4 +1,4 @@
-package com.balamut.yejournal.authentication;
+package com.balamut.yejournal.authentication.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -18,6 +18,7 @@ import java.util.function.Function;
 public class JWTService {
 
     private static final String SECRET_KEY = "4d5ef44d3d9a6372316802f75eec786d31a904ad93df94a8d535fa0ed0d6cbe7";
+    private static final int DATE_EXPIRE = 24 * 60 * 60 * 1000;
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -37,7 +38,7 @@ public class JWTService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + DATE_EXPIRE))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

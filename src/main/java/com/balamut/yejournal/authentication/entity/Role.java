@@ -1,26 +1,14 @@
 package com.balamut.yejournal.authentication.entity;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-import java.util.List;
-import java.util.UUID;
+@Getter
+public enum Role {
+    USER("USER");
+    private final String name;
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "user_roles")
-public class Role {
+    Role(String name) {
+        this.name = name;
+    }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-
-    private String name;
-
-    @ManyToMany(mappedBy = "roles")
-    private List<User> users;
 }
